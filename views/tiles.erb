@@ -1,66 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cloud Foundry Scale Demo (on EB!! Sorry)</title>
-    <link href="css/bootstrap.css" rel="stylesheet" media="screen"/>
-		<link href="css/pcf.css" rel="stylesheet" media="screen"/>
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
+  <title>Cloud Foundry Scale Demo (on EB!! Sorry)</title>
+  <link href="css/bootstrap.css" rel="stylesheet" media="screen"/>
+  <link href="css/pcf.css" rel="stylesheet" media="screen"/>
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
 </head>
 <body>
-<div class="container">
-    <div class="hero-unit-2">
+<div class="container-fluid">
+  <div class="hero-unit-2">
+    <div class="row">
+      <div class="col-xs-6">
         <h1>Cloud Foundry Scale Demo for Acme</h1>
-        <img src="/img/acme.jpg" alt="ep" width="200" height="150"/>
-        <p>Powered by <a href="http://www.pivotal.io">Pivotal</a>!</p>
+      </div>
+      <div class="col-xs-6">
+        <img src="/img/acme.jpg" alt="ep" width="100" height="75"/>
+      </div>
     </div>
-		<div class="container">
-			<div class="row">
-        <div class="col-xs-4">
-
-        </div>
-        <div class="col-xs-4">
-
-        </div>
-        <div class="col-xs-4">
-
-        </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <p>Powered by <a href="http://www.pivotal.io">Pivotal</a>!</p>
       </div>
-      <div class="row short">
-        <div class="col-xs-4">
-
-        </div>
-        <div class="col-xs-4">
-
-        </div>
-        <div class="col-xs-4">
-
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4">
-
-        </div>
-        <div class="col-xs-4">
-
-        </div>
-        <div class="col-xs-4">
-
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <button type="button" class="btn btn-danger btn-lg" id="killButton">
-            <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>Kill Switch
-          </button>
-          <button type="button" class="btn btn-warning btn-lg" id="loadButton">
-            <span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span>Apply Load
-          </button>
-        </div>
+    </div>
+  </div>
+  <div height="40%">
+    <div class="row">
+      <div class="col-xs-4">
 
       </div>
-		</div>
-</div>
+      <div class="col-xs-4">
+
+      </div>
+      <div class="col-xs-4">
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+
+      </div>
+      <div class="col-xs-4">
+
+      </div>
+      <div class="col-xs-4">
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+
+      </div>
+      <div class="col-xs-4">
+
+      </div>
+      <div class="col-xs-4">
+
+      </div>
+    </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <button type="button" class="btn btn-danger btn-lg" id="killButton">
+          <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>Kill Switch
+        </button>
+        <button type="button" class="btn btn-warning btn-lg" id="loadButton">
+          <span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span>Apply Load
+        </button>
+      </div>
+
+    </div>
+  </div>
+
 <script language="JavaScript">
   function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -72,35 +83,37 @@
     return decodeURIComponent(results[2].replace(/\+/g, " "));
   }
   var iframeLoc = getParameterByName("dest");
-  if(!iframeLoc) {
+  if (!iframeLoc) {
     iframeLoc = "/";
   }
 
   var counter = 0;
-  $('.col-xs-4').each(function(){
-    var anIFrame = $('<iframe src="'+iframeLoc+'" frameborder="1" scrolling="no" id="myFrame-'+counter+'"></iframe>');
+  $('.col-xs-4').each(function () {
+    var anIFrame = $('<iframe src="' + iframeLoc + '" frameborder="1" scrolling="no" id="myFrame-' + counter + '"></iframe>');
     $(this).append(anIFrame);
     counter++
   });
-  $( document ).ready(function(){
+  $(document).ready(function () {
     setInterval(reloadIframes, 3000)
   });
-  function reloadIframes(){
+  function reloadIframes() {
     $('iframe').each(reloadFrame);
   }
-  function reloadFrame(){
-    $(this).attr( 'src', function ( i, val ) { return val; });
+  function reloadFrame() {
+    $(this).attr('src', function (i, val) {
+      return val;
+    });
   }
   $('#killButton').click(killSwitch);
   $('#loadButton').click(loader);
-  function killSwitch(){
-    ksLoc = iframeLoc.substring(0,iframeLoc.lastIndexOf("/"))+"/killSwitch";
+  function killSwitch() {
+    ksLoc = iframeLoc.substring(0, iframeLoc.lastIndexOf("/")) + "/killSwitch";
     console.log(ksLoc);
     $.get(ksLoc);
   }
 
-  function loader(){
-    loadLoc = iframeLoc.substring(0,iframeLoc.lastIndexOf("/"))+"/load";
+  function loader() {
+    loadLoc = iframeLoc.substring(0, iframeLoc.lastIndexOf("/")) + "/load";
     console.log(loadLoc);
     $.get(loadLoc);
   }

@@ -13,7 +13,7 @@
 }
 
 .hero-unit-2 {
-    padding: 20px;
+    padding: 10px;
     margin-bottom: 10px;
     font-size: 12px;
     font-weight: 200;
@@ -52,4 +52,10 @@
 
 div.short {
     height: 30px;
+}
+
+iframe {
+    border-width: 1px;
+    border-style: solid;
+    height: 100px;
 }
