@@ -1,0 +1,9 @@
+---
+applications:
+- name: ep-blue
+  memory: 128M
+  instances: 1
+  buildpack: ruby_buildpack
+  env:
+    OCC_BUG: yeah
+  path: .

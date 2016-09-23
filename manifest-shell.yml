@@ -1,0 +1,7 @@
+---
+applications:
+- name: ep-shell
+  memory: 128M
+  instances: 1
+  buildpack: ruby_buildpac
+  path: .

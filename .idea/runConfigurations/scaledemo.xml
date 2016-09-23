@@ -1,0 +1,24 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="scaledemo" type="RubyRunConfigurationType" factoryName="Ruby">
+    <module name="ruby-cf-sample-app" />
+    <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+    <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+    <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
+    <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
+    <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
+    <envs>
+      <env name="VCAP_SERVICES" value="{&#10;  &quot;cleardb&quot;: [&#10;    {&#10;      &quot;credentials&quot;: {&#10;        &quot;jdbcUrl&quot;: &quot;jdbc:mysql://us-cdbr-iron-east-04.cleardb.net/ad_6eec23e8c688181?user=bfa84240091a58&amp;password=4ec0bc80&quot;,&#10;        &quot;uri&quot;: &quot;mysql://bfa84240091a58:4ec0bc80@us-cdbr-iron-east-04.cleardb.net:3306/ad_6eec23e8c688181?reconnect=true&quot;,&#10;        &quot;name&quot;: &quot;ad_6eec23e8c688181&quot;,&#10;        &quot;hostname&quot;: &quot;us-cdbr-iron-east-04.cleardb.net&quot;,&#10;        &quot;port&quot;: &quot;3306&quot;,&#10;        &quot;username&quot;: &quot;bfa84240091a58&quot;,&#10;        &quot;password&quot;: &quot;4ec0bc80&quot;&#10;      },&#10;      &quot;syslog_drain_url&quot;: null,&#10;      &quot;volume_mounts&quot;: [&#10;&#10;      ],&#10;      &quot;label&quot;: &quot;cleardb&quot;,&#10;      &quot;provider&quot;: null,&#10;      &quot;plan&quot;: &quot;spark&quot;,&#10;      &quot;name&quot;: &quot;p-mysql&quot;,&#10;      &quot;tags&quot;: [&#10;        &quot;Cloud Databases&quot;,&#10;        &quot;Data Stores&quot;,&#10;        &quot;Web-based&quot;,&#10;        &quot;Online Backup &amp; Storage&quot;,&#10;        &quot;Single Sign-On&quot;,&#10;        &quot;Cloud Security and Monitoring&quot;,&#10;        &quot;Certified Applications&quot;,&#10;        &quot;Developer Tools&quot;,&#10;        &quot;Data Store&quot;,&#10;        &quot;Development and Test Tools&quot;,&#10;        &quot;Buyable&quot;,&#10;        &quot;relational&quot;,&#10;        &quot;mysql&quot;&#10;      ]&#10;    }&#10;  ]&#10;}" />
+      <env name="OCC_BUG" value="TRUE" />
+    </envs>
+    <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+    <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+    <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+      <COVERAGE_PATTERN ENABLED="true">
+        <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+      </COVERAGE_PATTERN>
+    </EXTENSION>
+    <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/scaledemo.rb" />
+    <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
+    <method />
+  </configuration>
+</component>
