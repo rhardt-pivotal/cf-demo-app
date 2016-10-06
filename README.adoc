@@ -1,5 +1,8 @@
 # Sidecar Ruby Demo
 
+[[img-sidecar]]
+image::https://upload.wikimedia.org/wikipedia/commons/c/c2/Bundesarchiv_Bild_102-12561,_Berlin,_Fahrrad_mit_Beiwagen.jpg[Sidecar]
+
 This is a small Ruby app to demonstrate the https://github.com/rhardt-pivotal/sidecar-buildpack[Sidecar Buildpack]
 
 ## Usage
@@ -9,6 +12,8 @@ This is a small Ruby app to demonstrate the https://github.com/rhardt-pivotal/si
 cf push -f manifest-demo.yml
 ----
 +
+* To work as advertised this app requires the https://docs.pivotal.io/spring-cloud-services/1-1/[Spring Cloud Services]
+Service Broker to be bound to it.
 
 
 ## Details
