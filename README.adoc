@@ -17,7 +17,7 @@ Service Broker to be bound to it.
 
 
 ## Details
-This serves fortunes from the following endpoints:
+This app serves fortunes from the following endpoints:
 
 * `/javafortune`
 * `/nodefortune`
@@ -27,7 +27,7 @@ This serves fortunes from the following endpoints:
 Here is the sequence of events by which these endpoints become up and available:
 
 .  The app is pushed and started
-.  A Spring Boot `sidecar` is also deployed and started at the same time
+.  A Spring Boot `sidecar` is also deployed and started at the same time in the same application container
 .  The sidecar discovers a Eureka server and registers on behalf of this app as `ruby-demo`
 .  The sidecar looks for everything else registered in Eureka and exposes it locally via a https://github.com/Netflix/zuul[Zuul] proxy.
 *  For example, the `node-demo` application is made available locally as http://127.0.0.1:8087/node-demo/
