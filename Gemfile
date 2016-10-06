@@ -6,5 +6,6 @@ source "http://rubygems.org/"
 
 # declare the sinatra dependency
 gem "sinatra"
+gem "rest-client"
 
 

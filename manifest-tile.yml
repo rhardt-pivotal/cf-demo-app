@@ -3,5 +3,4 @@ applications:
 - name: ep-tile
   memory: 512M
   instances: 1
-  buildpack: ruby_buildpack
   path: .

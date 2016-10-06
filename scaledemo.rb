@@ -4,6 +4,7 @@
   require 'yaml'
   require 'json'
   require 'net/http'
+  require 'rest-client'
 
   set :requests, 0
   set :bind, '0.0.0.0'
@@ -80,10 +81,9 @@
   end
 
   get '/health' do
-    settings.requests += 1
-    "<h2>I'm healthy!</h2>"
+    content_type 'application/json'
+    {:status => 'UP'}.to_json
   end
-
 
   get '/greet/:name/:num' do
     g = {'name' => params['name'], 'num' => params['num']}
@@ -91,7 +91,38 @@
 
   end
 
-  def colorize(string, color_code)
-    "\e[#{color_code}m#{string}\e[0m"
+  get '/info' do
+    {}.to_json
   end
+
+  get '/javafortune' do
+    content_type 'application/json'
+    RestClient::get("http://localhost:#{ENV['eureka_port'] || 8087}/fortunes/random")
+  end
+
+  get '/pythonfortune' do
+    content_type 'application/json'
+    RestClient::get("http://localhost:#{ENV['eureka_port'] || 8087}/python-demo/javafortune")
+  end
+
+  get '/nodefortune' do
+    content_type 'application/json'
+    RestClient::get("http://localhost:#{ENV['eureka_port'] || 8087}/node-demo/javafortune")
+  end
+
+  get '/gofortune' do
+    content_type 'application/json'
+    RestClient::get("http://localhost:#{ENV['eureka_port'] || 8087}/go-demo/javafortune")
+  end
+
+  get '/dockerfortune' do
+    content_type 'application/json'
+    RestClient::get("http://localhost:#{ENV['eureka_port'] || 8087}/docker-demo/javafortune")
+  end
+
+  get '/endoftheworld' do
+    content_type 'application/json'
+    RestClient::get("http://localhost:#{ENV['eureka_port'] || 8087}/python-demo/endoftheworld")
+  end
+
 
