@@ -1,0 +1,32 @@
+# Sidecar Ruby Demo
+
+This is a small Ruby app to demonstrate the https://github.com/rhardt-pivotal/sidecar-buildpack[Sidecar Buildpack]
+
+## Usage
+* push to Cloud Foundry
++
+----
+cf push -f manifest-demo.yml
+----
++
+
+
+## Details
+This serves fortunes from the following endpoints:
+
+* `/javafortune`
+* `/nodefortune`
+* `/pythonfortune`
+* `/gofortune`
+
+Here is the sequence of events by which these endpoints become up and available:
+
+.  The app is pushed and started
+.  A Spring Boot `sidecar` is also deployed and started at the same time
+.  The sidecar discovers a Eureka server and registers on behalf of this app as `ruby-demo`
+.  The sidecar looks for everything else registered in Eureka and exposes it locally via a https://github.com/Netflix/zuul[Zuul] proxy.
+*  For example, the `node-demo` application is made available locally as http://127.0.0.1:8087/node-demo/
+*  ... so the this app could send a request to the node-demo's `/javafortune` endpoint would therefore be at: http://127.0.0.1:8087/node-demo/javafortune
+*  conversely, other sidecar-enabled apps can reach this app's `/javafortune` endpoint locally at http://127.0.0.1/ruby-demo/javafortune
+
+This is part of a suite of demos for the https://github.com/rhardt-pivotal/sidecar-buildpack[Sidecar Buildpack]
