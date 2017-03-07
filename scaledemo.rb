@@ -13,16 +13,21 @@
   ev = JSON.pretty_generate(ENV.to_hash)
 
   get '/' do
+     puts ev
      settings.requests += 1
-     app_info = ENV['VCAP_APPLICATION'] ? JSON.parse(ENV['VCAP_APPLICATION']) : Hash.new
-     ENV['APP_NAME'] = app_info["application_name"] ? app_info["application_name"] : "unknown"
-     ENV['APP_INSTANCE'] = app_info["instance_index"] ? app_info["instance_index"].to_s : "unknown"
-     ENV['APP_MEM'] = app_info["limits"] ? app_info["limits"]["mem"].to_s : " "
-     ENV['APP_DISK'] = app_info["limits"] ? app_info["limits"]["disk"].to_s : " "
-     ENV['APP_IP'] = IPSocket.getaddress(Socket.gethostname)
-     ENV['APP_PORT'] = app_info["port"] ? app_info["port"].to_s : "unknown"
-     ENV['SERVICE_JSON'] = ENV['VCAP_SERVICES'] ? JSON.pretty_generate(JSON.parse(ENV['VCAP_SERVICES'])) : "n/a"
-     ENV['EVERYTHING'] = ev
+     begin
+       app_info = ENV['VCAP_APPLICATION'] ? JSON.parse(ENV['VCAP_APPLICATION']) : Hash.new
+       ENV['APP_NAME'] = app_info["application_name"] ? app_info["application_name"] : "unknown"
+       ENV['APP_INSTANCE'] = app_info["instance_index"] ? app_info["instance_index"].to_s : "unknown"
+       ENV['APP_MEM'] = app_info["limits"] ? app_info["limits"]["mem"].to_s : " "
+       ENV['APP_DISK'] = app_info["limits"] ? app_info["limits"]["disk"].to_s : " "
+       ENV['APP_IP'] = IPSocket.getaddress(Socket.gethostname)
+       ENV['APP_PORT'] = app_info["port"] ? app_info["port"].to_s : "unknown"
+       ENV['SERVICE_JSON'] = ENV['VCAP_SERVICES'] ? JSON.pretty_generate(JSON.parse(ENV['VCAP_SERVICES'])) : "n/a"
+       ENV['EVERYTHING'] = ev
+     rescue Exception => err
+       puts err.to_s
+     end
 
      erb :'index'
   end

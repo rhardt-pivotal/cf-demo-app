@@ -3,10 +3,9 @@ applications:
 - name: ruby-demo
   memory: 512M
   instances: 1
-  env:
-    eureka_port: 8089
   services:
   - service-registry
+  - config-server
   host: ruby-demo-${random-word}
   buildpack: https://github.com/rhardt-pivotal/sidecar-buildpack.git
   path: .
